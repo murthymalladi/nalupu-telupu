@@ -11,11 +11,12 @@ public class BreadthFirstSearch {
 	private boolean[] marked;
 	private int[] edgeTo;
 	private int[] distTo;
-	
+	private int s;
 	public BreadthFirstSearch(Graph G, int s){
 		marked = new boolean[G.V()];
 		edgeTo = new int[G.V()];
 		distTo = new int[G.V()];
+		this.s = s;
 		bfs(G,s);
 	}
 	public void bfs(Graph G,int s){
@@ -47,7 +48,7 @@ public class BreadthFirstSearch {
 	public void pathTo(int v){
 		Stack<Integer> stack = new Stack<Integer>();
 		if(hasPathTo(v)){
-			for(int x = v; distTo[x] != 0; x = edgeTo[x])
+			for(int x = v; x != s; x = edgeTo[x])
 				stack.push(x);
 		}
 		while(!stack.isEmpty()){
